@@ -1,0 +1,3 @@
+[submodule "path_to_submodule"] 
+  path = umami
+  url = https://github.com/clement-joye/timestamp-enabled-umami.git

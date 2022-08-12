@@ -1,0 +1,45 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+      "staticSiteName": {
+        "type": "string"
+      },
+      "clientIpHeader": {
+        "type": "string"
+      },
+      "serviceBusConnString": {
+        "type": "string"
+      },
+      "serviceBusQueueName": {
+        "type": "string"
+      },
+      "umamiEndpoint": {
+        "type": "string"
+      },
+      "apiEndpoint": {
+        "type": "string"
+      },
+      "updateAciUrl": {
+        "type": "string"
+      }
+    },
+    "variables": {},
+    "resources": [
+      {
+        "type": "Microsoft.Web/staticSites/config",
+        "apiVersion": "2020-10-01",
+        "name": "[concat(parameters('staticSiteName'), '/appsettings')]",
+        "kind": "string",
+        "properties": {
+          "CLIENT_IP_HEADER": "[parameters('clientIpHeader')]",
+          "SERVICE_BUS_CONNSTRING": "[parameters('serviceBusConnString')]",
+          "SERVICE_BUS_QUEUE_NAME": "[parameters('serviceBusQueueName')]",
+          "UMAMI_ENDPOINT": "[parameters('umamiEndpoint')]",
+          "API_ENDPOINT": "[parameters('apiEndpoint')]",
+          "UPDATE_ACI_URL": "[parameters('updateAciUrl')]"
+        }
+      }
+    ],
+    "outputs": {}
+  }

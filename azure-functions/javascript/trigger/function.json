@@ -1,0 +1,10 @@
+{
+  "bindings": [
+    {
+      "name": "forwardTrigger",
+      "type": "timerTrigger",
+      "direction": "in",
+      "schedule": "0 10 2 * * *"
+    }
+  ]
+}

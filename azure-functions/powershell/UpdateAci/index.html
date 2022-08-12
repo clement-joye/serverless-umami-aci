@@ -1,0 +1,422 @@
+
+<!DOCTYPE html>
+<!-- Thanks to Anya Melnyk for the loading animations https://codepen.io/slyka85/pen/QvBQPb" -->
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Loading ACI</title>
+    <meta name="description" content="Page showing loading animation until ACIs are loaded.">
+    <style>
+        *, *:before, *:after {
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: calibri;
+        }
+
+        a {
+            cursor: pointer;
+        }
+
+        .link {
+            color: grey;
+        }
+
+        .link:hover {
+            text-decoration: underline;
+            color: whitesmoke;
+        }
+        
+        body {
+            background: black;
+        }
+        
+        .container {
+            text-align: center;
+            margin-top: 10%;
+        }
+        
+        section {
+            width: 30%;
+            display: inline-block;
+            text-align: center;
+            min-height: 215px;
+            vertical-align: top;
+            margin: 1%;
+            background: #080915;
+            border-radius: 5px;
+        }
+
+        .text-bloc {
+            display: inline-block;
+            margin: 54px;
+        }
+
+        @media only screen and (max-width: 600px) {
+            section {
+                min-width: 350px;
+            }
+
+            .text-bloc {
+                margin: 54px auto;
+            }
+            
+            .loader {
+                margin: 30px 30px 10px 30px;
+            }
+        }
+
+        .hidden {
+            display: none !important;
+        }
+        
+        .loader {
+            position: relative;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            margin: 54px;
+            display: inline-block;
+            vertical-align: top;
+        }
+
+        /*LOADER-1*/
+        
+        .loader-1 .loader-outter {
+            position: absolute;
+            border: 4px solid #4E26E0;
+            border-left-color: transparent;
+            border-bottom: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            -webkit-animation: loader-1-outter 1s cubic-bezier(.42, .61, .58, .41) infinite;
+            animation: loader-1-outter 1s cubic-bezier(.42, .61, .58, .41) infinite;
+        }
+        
+        .loader-1 .loader-inner {
+            position: absolute;
+            border: 4px solid #4E26E0;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            left: calc(50% - 20px);
+            top: calc(50% - 20px);
+            border-right: 0;
+            border-top-color: transparent;
+            -webkit-animation: loader-1-inner 1s cubic-bezier(.42, .61, .58, .41) infinite;
+            animation: loader-1-inner 1s cubic-bezier(.42, .61, .58, .41) infinite;
+        }
+        
+        /* ----------------      ARROWS      ----------------- */
+
+        .center-con {
+            display: inline-block;
+            margin: 75px;
+        }
+
+        .round {
+            position: relative;
+            border: 3px solid #fff;
+            width: 66px;
+            height: 66px;
+            border-radius: 100%;
+        }
+
+        .span {
+            z-index: 999;
+            height: 3px;
+            margin:1px;
+            width: 20px;
+            background: #fff;
+            transition: 0.4s ease;
+        }
+
+        .span:first-child {
+            display: block;
+            position: absolute;
+            transform: rotate(45deg);
+            left: 25%;
+            bottom: 35%;
+        }
+
+        .span:nth-child(2) {
+            display: block;
+            position: absolute;
+            transform: rotate(-45deg);
+            left: 45%;
+            bottom: 35%;
+        }
+
+        .span:nth-child(3) {
+            display: block;
+            position: absolute;
+            transform: rotate(45deg);
+            left: 25%;
+            bottom: 54%;
+        }
+
+        .span:nth-child(4) {
+            display: block;
+            position: absolute;
+            transform: rotate(-45deg);
+            left: 45%;
+            bottom: 54%;
+        }
+
+        .round:hover span:nth-child(1) {
+            transform: rotate(-135deg);
+        }
+
+        .round:hover span:nth-child(2) {
+            transform: rotate(135deg);
+        }
+
+        .round:hover span:nth-child(3) {
+            transform: rotate(225deg);
+        }
+
+        .round:hover span:nth-child(4) {
+            transform: rotate(-225deg);
+        }
+
+        /* ----------------     KEYFRAMES    ----------------- */
+        
+        @-webkit-keyframes loader-1-outter {
+            0% {
+                -webkit-transform: rotate(0deg);
+                transform: rotate(0deg);
+            }
+            100% {
+                -webkit-transform: rotate(360deg);
+                transform: rotate(360deg);
+            }
+        }
+        
+        @keyframes loader-1-outter {
+            0% {
+                -webkit-transform: rotate(0deg);
+                transform: rotate(0deg);
+            }
+            100% {
+                -webkit-transform: rotate(360deg);
+                transform: rotate(360deg);
+            }
+        }
+        
+        @-webkit-keyframes loader-1-inner {
+            0% {
+                -webkit-transform: rotate(0deg);
+                transform: rotate(0deg);
+            }
+            100% {
+                -webkit-transform: rotate(-360deg);
+                transform: rotate(-360deg);
+            }
+        }
+        
+        @keyframes loader-1-inner {
+            0% {
+                -webkit-transform: rotate(0deg);
+                transform: rotate(0deg);
+            }
+            100% {
+                -webkit-transform: rotate(-360deg);
+                transform: rotate(-360deg);
+            }
+        }
+        
+        
+        @-webkit-keyframes dot-jump {
+            0% {
+                -webkit-transform: translateY(0);
+                transform: translateY(0);
+            }
+            100% {
+                -webkit-transform: translateY(-15px);
+                transform: translateY(-15px);
+            }
+        }
+        
+        @keyframes dot-jump {
+            0% {
+                -webkit-transform: translateY(0);
+                transform: translateY(0);
+            }
+            100% {
+                -webkit-transform: translateY(-15px);
+                transform: translateY(-15px);
+            }
+        }
+        
+        
+        @-webkit-keyframes line-grow {
+            0% {
+                height: 0;
+            }
+            100% {
+                height: 75%;
+            }
+        }
+        
+        @keyframes line-grow {
+            0% {
+                height: 0;
+            }
+            100% {
+                height: 75%;
+            }
+        }
+    </style>
+    </head>
+    <body>
+        <div class="container">
+            <section style="border-radius: 10px; overflow: hidden;">
+                <div style="text-align: center; padding-top: 3rem; padding-bottom: 3rem; background-color: whitesmoke;">
+                    <img alt="umami logo" style="position: relative; display: block; object-fit: contain; width: 25%; margin: auto;" src="data:image/webp;base64,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"/>
+                </div>
+                <a id="umami-ready" class="loader hidden" href="{{umamiUrl}}/dashboard" target="_blank">
+                    <div class="round">
+                        <span class="span"></span>
+                        <span class="span"></span>
+                        <span class="span"></span>
+                        <span class="span"></span>
+                    </div>
+                </a>
+                <div id="umami-loading" class="loader loader-1">
+                    <div class="loader-outter"></div>
+                    <div class="loader-inner"></div>
+                </div>
+                <div class="text-bloc">
+                    <span id="umami-status" style="color: whitesmoke;font-size: 20px;display: block;font-family: Calibri;margin-top: 5px;">Status: Unknown</span>
+                    <a class="link" href="{{umamiStopUrl}}"  style="font-size: 20px; margin-top: 10px; margin-right: 10px; display:inline-block;">Stop</a>
+                    <a class="link" href="{{umamiStartUrl}}" style="font-size: 20px; margin-top: 10px; display:inline;">Start</a>
+                </div>
+            </section>
+            <div>
+                <label id="minutes">00</label>
+                <label id="colon">:</label>
+                <label id="seconds">00</label>
+            </div>
+          </div>
+          <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+          <script type="text/javascript">
+            let umamiReady = false;
+            var intervalId;
+            let minutesLabel = document.getElementById("minutes");
+            let secondsLabel = document.getElementById("seconds");
+            let totalSeconds = 0;
+            function setStatus(loading, ready, status) {
+                if(status === "Ready") {
+                    if(!$(loading).hasClass("hidden")){
+                        $(loading).addClass('hidden');
+                    }
+
+                    if($(ready).hasClass("hidden")){
+                        $(ready).removeClass('hidden');
+                    }
+                }
+                else if(status === "Stopped") {
+                    if(!$(loading).hasClass("hidden")){
+                        $(loading).addClass('hidden');
+                    }
+
+                    if(!$(ready).hasClass("hidden")){
+                        $(ready).addClass('hidden');
+                    }
+                }
+                else {
+                    if(!$(ready).hasClass("hidden")){
+                        $(ready).addClass('hidden');
+                    }
+
+                    if($(loading).hasClass("hidden")){
+                        $(loading).removeClass('hidden');
+                    }
+                }
+            }
+            function getContainerGroupStatus() {
+                $.ajax({
+                    url: "{{url}}",
+                    type: "GET",
+                    dataType: 'json',
+                    success: function(data) {
+
+                        if(!data) {
+                            setTimeout(getContainerGroupStatus, 5000);
+                        }
+
+                        if(umamiReady) {
+                            clearInterval(intervalId);
+                            return;
+                        }
+
+                        if(!umamiReady) {
+                            setStatus("#umami-loading", "#umami-ready", data.umami)
+                            $("#umami-status").text(`Status: ${data.umami}`)
+                        }
+                        
+                        if(data.umami === "Stopped") {
+                            clearInterval(intervalId);
+                            return;
+                        }
+
+                        if(data.umami === "Running" && !umamiReady) {
+                            var umamiUrl = $("#umami-ready").attr("href");
+                            getInstanceStatus(umamiUrl, "#umami-loading", "#umami-ready", "#umami-status", "umami");
+                        }
+
+                        setTimeout(getContainerGroupStatus, 5000);
+                    },
+                    error: function(err) {
+                        console.log(data);
+                        setTimeout(getContainerGroupStatus, 5000);
+                    }
+                });
+            }
+            function getInstanceStatus(url, loading, ready, status, instance) {
+                
+                try {
+                    $.ajax({
+                        url: url,
+                        timeout: 15000,
+                      })
+                      .done(function (jqXHR) {
+                        setStatus(loading, ready, "Ready")
+                        $(status).text(`Status: Ready`)
+
+                        if(instance == "umami") {
+                            umamiReady = true;
+                        }
+                    });
+                }
+                catch(error) { }
+            }
+            function setTime()
+            {
+                ++totalSeconds;
+                secondsLabel.innerHTML = pad(totalSeconds%60);
+                minutesLabel.innerHTML = pad(parseInt(totalSeconds/60));
+            }
+            function pad(val)
+            {
+                var valString = val + "";
+                if(valString.length < 2)
+                {
+                    return "0" + valString;
+                }
+                else
+                {
+                    return valString;
+                }
+            }
+            $(document).ready(function() {
+                setTimeout(getContainerGroupStatus, 5000);
+                intervalId = setInterval(setTime, 1000);
+            });</script>
+    </body>
+</html>
+

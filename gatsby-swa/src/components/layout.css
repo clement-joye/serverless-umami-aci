@@ -1,0 +1,7 @@
+html, 
+body, 
+#___gatsby, 
+#___gatsby > div, 
+main {
+    height: 100% !important;
+}
